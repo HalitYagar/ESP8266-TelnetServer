@@ -2,7 +2,7 @@
 * Halit Yagar
 * halityagar45@gmail.com
 * Telnet server for ESP8266
-* v1.0.1
+* v1.0.2
 */
 #include <ESP8266WiFi.h>
 #include <Arduino.h>
@@ -13,14 +13,8 @@
 #define MAX_CLIENTS 4
 #define PARAM 4 // message parameter number
 
-//char ssid[MAX_STR] = "\0";
-//char pass[MAX_STR] = "\0";
-
-//char* ssid = "SUPERONLINE-WiFi_9956";
-//char* pass = "J3CCTPAXAAV4";
-
-char* ssid = "Aloha";
-char* pass = "rZMhaXXm";
+char ssid[MAX_STR] = "\0";
+char pass[MAX_STR] = "\0";
 
 enum commands {
   scan = 1, connectWifi, password, dataSend, dataRecieve, clientConnect, restart, portNum
