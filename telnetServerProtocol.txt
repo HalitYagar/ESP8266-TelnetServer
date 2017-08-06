@@ -1,0 +1,61 @@
+Telnet server messaging Protocol
+All messages start with '#' and end with '!'
+messages have one four parameters seperated by comma ',' some parameters may be zero.
+Note: after flash the program to ESP you need the restart device manually, then software restart will work.
+
+Enumaration
+-----------
+1.scan
+2.connectWifi
+3.password
+4.dataSend
+5.dataRecieve
+6.clientConnect
+7.restart ESP 
+8.write port number 
+
+Commands explanation
+--------------------
+#01,0,0,0! // scan for networks
+#02,index,0,0! // connect network with index number
+#03,password,0,0! // if needed enter password
+#04,index,data,0! // send data to client with index number
+#07,0,0,0! // restart ESP
+#08,number,0,0! // set port number
+
+Responses to the commands start with '*' and first parameter indicates which command to response. All other attributes are same
+
+Responses explanation
+---------------------
+*00,0,0,0! // message invalid
+*Version,ChipID,portNumber,0! // opening message 
+----------
+*01,index,SSID,IsRequirePass! //show ssid and is password required
+*01,0,0,0! // Scan complete
+----------
+*02,0,localIP,publicIP! // connected to the network
+*02,1,0,0! // disconnected from network
+*02,2,0,0! // network out of index
+*02,3,0,0! // password required
+*02,4,0,0! // there is no internet access on network
+----------
+*03,1,0,0! // re-enter password
+----------
+*04,0,0,0! // data sent
+*04,1,0,0! // client offline - data not sent
+*04,2,0,0! // there is no such client - data not sent
+----------
+*05,index,data,0! // one of the clients sent data
+----------
+*06,index,0,0! // client connected
+*06,index,1,0! // client gone
+*06,MAX_CLIENTS,2,0! // server full
+----------
+*07,0,0,0! // restarting
+----------
+*08,0,number,0! // writing port number to EPPROM is succesful
+*08,1,0,0! // write to EEPROM failed
+
+
+password for SUPERONLINE-WiFi_9956
+J3CCTPAXAAV4
